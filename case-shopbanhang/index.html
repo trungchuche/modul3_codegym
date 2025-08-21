@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DigitalStore - Mua Bán Tài Khoản Số Uy Tín</title>
+  <meta name="description" content="Mua bán tài khoản số uy tín, giá tốt. Netflix, Spotify, Adobe, Microsoft Office và nhiều dịch vụ khác. Giao hàng tức thì, bảo hành dài hạn.">
+  <meta name="keywords" content="tài khoản số, Netflix, Spotify, Adobe, Microsoft, mua tài khoản">
+  <meta name="author" content="DigitalStore">
+
+  <!-- Thể meta đồ thị mở -->
+  <meta property="og:title" content="DigitalStore - Mua Bán Tài Khoản Số Uy Tín">
+  <meta property="og:description" content="Tài khoản số chất lượng cao, giá cả hợp lý, giao hàng tức thì">
+  <meta property="og:type" content="website">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      color: #374151;
+      background-color: #fafafa;
+    }
+
+    /* Smooth transitions */
+    .transition-smooth {
+      transition: all 0.2s ease-in-out;
+    }
+
+    /* Card hover effects */
+    .product-card {
+      transition: all 0.2s ease-in-out;
+    }
+
+    .product-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Button hover effects */
+    .btn-primary {
+      background: linear-gradient(135deg, #0ea5e9, #0284c7);
+      transition: all 0.2s ease-in-out;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #0284c7, #075985);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+    }
+
+    /* Search and filter animations */
+    .search-input:focus {
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+    }
+
+    /* Loading animation */
+    .loading {
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Modal styles */
+    .modal {
+      backdrop-filter: blur(4px);
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      animation: slideUp 0.2s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Responsive grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+      }
+    }
+
+    /* Badge styles */
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.375rem;
+    }
+
+    .badge-hot {
+      background-color: #fef2f2;
+      color: #dc2626;
+    }
+
+    .badge-new {
+      background-color: #f0fdf4;
+      color: #16a34a;
+    }
+
+    .badge-sale {
+      background-color: #fef3c7;
+      color: #d97706;
+    }
+  </style>
+</head>
+<body>
+<!-- Header -->
+<header class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <h1 class="text-2xl font-bold text-primary-600">
+            <i class="fas fa-digital-tachograph mr-2"></i>DigitalStore
+          </h1>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="hidden md:flex space-x-8">
+        <a href="#home" class="text-gray-700 hover:text-primary-600 transition-smooth font-medium">Trang chủ</a>
+        <a href="#products" class="text-gray-700 hover:text-primary-600 transition-smooth font-medium">Sản phẩm</a>
+        <a href="#about" class="text-gray-700 hover:text-primary-600 transition-smooth font-medium">Giới thiệu</a>
+        <a href="#contact" class="text-gray-700 hover:text-primary-600 transition-smooth font-medium">Liên hệ</a>
+      </nav>
+
+      <!-- Cart and User -->
+      <div class="flex items-center space-x-4">
+        <button class="relative p-2 text-gray-600 hover:text-primary-600 transition-smooth" onclick="toggleCart()">
+          <i class="fas fa-shopping-cart text-xl"></i>
+          <span id="cartCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+        </button>
+        <button class="p-2 text-gray-600 hover:text-primary-600 transition-smooth">
+          <i class="fas fa-user text-xl"></i>
+        </button>
+
+        <!-- Mobile menu button -->
+        <button class="md:hidden p-2 text-gray-600" onclick="toggleMobileMenu()">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div id="mobileMenu" class="md:hidden hidden bg-white border-t">
+    <div class="px-4 py-2 space-y-2">
+      <a href="#home" class="block py-2 text-gray-700 hover:text-primary-600 transition-smooth">Trang chủ</a>
+      <a href="#products" class="block py-2 text-gray-700 hover:text-primary-600 transition-smooth">Sản phẩm</a>
+      <a href="#about" class="block py-2 text-gray-700 hover:text-primary-600 transition-smooth">Giới thiệu</a>
+      <a href="#contact" class="block py-2 text-gray-700 hover:text-primary-600 transition-smooth">Liên hệ</a>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="bg-gradient-to-br from-primary-50 to-blue-50 py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        Tài Khoản Số <span class="text-primary-600">Chất Lượng Cao</span>
+      </h2>
+      <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+        Mua bán tài khoản Netflix, Spotify, Adobe, Microsoft Office và nhiều dịch vụ khác.
+        Giao hàng tức thì, bảo hành dài hạn, giá cả hợp lý.
+      </p>
+      <button onclick="scrollToProducts()" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-lg">
+        <i class="fas fa-shopping-bag mr-2"></i>Khám Phá Ngay
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Search and Filter Section -->
+<section id="products" class="py-12 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Search Bar -->
+    <div class="mb-8">
+      <div class="max-w-2xl mx-auto">
+        <div class="relative">
+          <input type="text"
+                 id="searchInput"
+                 placeholder="Tìm kiếm tài khoản..."
+                 class="w-full px-4 py-3 pl-12 pr-4 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent search-input transition-smooth">
+          <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="mb-8">
+      <div class="flex flex-wrap justify-center gap-3">
+        <button onclick="filterProducts('all')" class="filter-btn active px-6 py-2 rounded-full border border-gray-200 hover:border-primary-500 hover:text-primary-600 transition-smooth font-medium">
+          Tất cả
+        </button>
+        <button onclick="filterProducts('streaming')" class="filter-btn px-6 py-2 rounded-full border border-gray-200 hover:border-primary-500 hover:text-primary-600 transition-smooth font-medium">
+          Streaming
+        </button>
+        <button onclick="filterProducts('software')" class="filter-btn px-6 py-2 rounded-full border border-gray-200 hover:border-primary-500 hover:text-primary-600 transition-smooth font-medium">
+          Phần mềm
+        </button>
+        <button onclick="filterProducts('music')" class="filter-btn px-6 py-2 rounded-full border border-gray-200 hover:border-primary-500 hover:text-primary-600 transition-smooth font-medium">
+          Âm nhạc
+        </button>
+        <button onclick="filterProducts('gaming')" class="filter-btn px-6 py-2 rounded-full border border-gray-200 hover:border-primary-500 hover:text-primary-600 transition-smooth font-medium">
+          Gaming
+        </button>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div id="productsGrid" class="product-grid">
+      <!-- Products will be loaded here -->
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="hidden text-center py-12">
+      <div class="loading">
+        <i class="fas fa-spinner fa-spin text-3xl text-primary-500"></i>
+        <p class="mt-4 text-gray-600">Đang tải sản phẩm...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">Tại Sao Chọn DigitalStore?</h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Chúng tôi cam kết mang đến trải nghiệm mua sắm tài khoản số tốt nhất với chất lượng và dịch vụ hàng đầu.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+        <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-bolt text-2xl text-primary-600"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">Giao Hàng Tức Thì</h3>
+        <p class="text-gray-600">Nhận tài khoản ngay sau khi thanh toán thành công, không cần chờ đợi.</p>
+      </div>
+
+      <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+        <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-shield-alt text-2xl text-primary-600"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">Bảo Hành Dài Hạn</h3>
+        <p class="text-gray-600">Cam kết bảo hành và hỗ trợ kỹ thuật 24/7 cho tất cả sản phẩm.</p>
+      </div>
+
+      <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+        <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-dollar-sign text-2xl text-primary-600"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">Giá Cả Hợp Lý</h3>
+        <p class="text-gray-600">Giá tốt nhất thị trường với nhiều ưu đãi và chương trình khuyến mãi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">Liên Hệ Hỗ Trợ</h2>
+      <p class="text-xl text-gray-600">
+        Cần hỗ trợ? Chúng tôi luôn sẵn sàng giúp đỡ bạn 24/7.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 text-center">
+      <div class="p-6">
+        <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-envelope text-primary-600"></i>
+        </div>
+        <h3 class="font-semibold mb-2">Email</h3>
+        <p class="text-gray-600">support@digitalstore.vn</p>
+      </div>
+
+      <div class="p-6">
+        <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fab fa-telegram text-primary-600"></i>
+        </div>
+        <h3 class="font-semibold mb-2">Telegram</h3>
+        <p class="text-gray-600">@digitalstore_support</p>
+      </div>
+
+      <div class="p-6">
+        <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-phone text-primary-600"></i>
+        </div>
+        <h3 class="font-semibold mb-2">Hotline</h3>
+        <p class="text-gray-600">1900 1234</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4">
+          <i class="fas fa-digital-tachograph mr-2"></i>DigitalStore
+        </h3>
+        <p class="text-gray-400 mb-4">
+          Nền tảng mua bán tài khoản số uy tín hàng đầu Việt Nam.
+        </p>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-400 hover:text-white transition-smooth">
+            <i class="fab fa-facebook text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-smooth">
+            <i class="fab fa-telegram text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-smooth">
+            <i class="fab fa-youtube text-xl"></i>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-4">Sản Phẩm</h4>
+        <ul class="space-y-2 text-gray-400">
+          <li><a href="#" class="hover:text-white transition-smooth">Netflix</a></li>
+          <li><a href="#" class="hover:text-white transition-smooth">Spotify</a></li>
+          <li><a href="#" class="hover:text-white transition-smooth">Adobe Creative</a></li>
+          <li><a href="#" class="hover:text-white transition-smooth">Microsoft Office</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-4">Hỗ Trợ</h4>
+        <ul class="space-y-2 text-gray-400">
+          <li><a href="#" class="hover:text-white transition-smooth">Hướng dẫn mua hàng</a></li>
+          <li><a href="#" class="hover:text-white transition-smooth">Chính sách bảo hành</a></li>
+          <li><a href="#" class="hover:text-white transition-smooth">Câu hỏi thường gặp</a></li>
+          <li><a href="#" class="hover:text-white transition-smooth">Liên hệ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-4">Thông Tin</h4>
+        <ul class="space-y-2 text-gray-400">
+          <li><a href="#" class="hover:text-white transition-smooth">Về chúng tôi</a></li>
+          <li><a href="#" class="hover:text-white transition-smooth">Điều khoản sử dụng</a></li>
+          <li><a href="#" class="hover:text-white transition-smooth">Chính sách bảo mật</a></li>
+          <li><a href="#" class="hover:text-white transition-smooth">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+      <p>&copy; 2024 DigitalStore. Tất cả quyền được bảo lưu.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Shopping Cart Modal -->
+<div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 modal z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-white rounded-xl max-w-md w-full max-h-96 overflow-y-auto modal-content">
+    <div class="p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-xl font-bold">Giỏ Hàng</h3>
+        <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-600">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+
+      <div id="cartItems" class="space-y-4">
+        <!-- Cart items will be populated here -->
+      </div>
+
+      <div id="emptyCart" class="text-center py-8 text-gray-500">
+        <i class="fas fa-shopping-cart text-4xl mb-4"></i>
+        <p>Giỏ hàng trống</p>
+      </div>
+
+      <div id="cartFooter" class="hidden border-t pt-4 mt-4">
+        <div class="flex items-center justify-between mb-4">
+          <span class="font-semibold">Tổng cộng:</span>
+          <span id="cartTotal" class="font-bold text-xl text-primary-600">0₫</span>
+        </div>
+        <button onclick="proceedToCheckout()" class="w-full btn-primary text-white py-3 rounded-lg font-semibold">
+          Thanh Toán
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Checkout Modal -->
+<div id="checkoutModal" class="fixed inset-0 bg-black bg-opacity-50 modal z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-white rounded-xl max-w-2xl w-full max-h-96 overflow-y-auto modal-content">
+    <div class="p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-2xl font-bold">Thanh Toán</h3>
+        <button onclick="closeCheckout()" class="text-gray-400 hover:text-gray-600">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+
+      <form onsubmit="processPayment(event)" class="space-y-6">
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Họ và tên</label>
+            <input type="text" required class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+            <input type="email" required class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Số điện thoại</label>
+          <input type="tel" required class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-3">Phương thức thanh toán</label>
+          <div class="space-y-3">
+            <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:border-primary-500 transition-smooth">
+              <input type="radio" name="payment" value="momo" class="mr-3">
+              <i class="fas fa-mobile-alt text-pink-500 mr-3"></i>
+              <span>Ví MoMo</span>
+            </label>
+            <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:border-primary-500 transition-smooth">
+              <input type="radio" name="payment" value="banking" class="mr-3">
+              <i class="fas fa-university text-blue-500 mr-3"></i>
+              <span>Chuyển khoản ngân hàng</span>
+            </label>
+            <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:border-primary-500 transition-smooth">
+              <input type="radio" name="payment" value="card" class="mr-3">
+              <i class="fas fa-credit-card text-green-500 mr-3"></i>
+              <span>Thẻ tín dụng/ghi nợ</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="border-t pt-4">
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-semibold text-lg">Tổng thanh toán:</span>
+            <span id="checkoutTotal" class="font-bold text-2xl text-primary-600">0₫</span>
+          </div>
+          <button type="submit" class="w-full btn-primary text-white py-4 rounded-lg font-semibold text-lg">
+            <i class="fas fa-lock mr-2"></i>Xác Nhận Thanh Toán
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Sample product data
+  const products = [
+    {
+      id: 1,
+      name: 'Netflix Premium',
+      category: 'streaming',
+      price: 45000,
+      originalPrice: 60000,
+      image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200"%3E%3Crect width="300" height="200" fill="%23E50914"/%3E%3Ctext x="150" y="110" text-anchor="middle" font-size="32" fill="white" font-weight="bold"%3ENetflix%3C/text%3E%3C/svg%3E',
+      badge: 'hot',
+      warranty: '6 tháng',
+      description: 'Tài khoản Netflix Premium chất lượng cao, xem 4K không giới hạn'
+    },
+    {
+      id: 2,
+      name: 'Spotify Premium',
+      category: 'music',
+      price: 25000,
+      originalPrice: 35000,
+      image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200"%3E%3Crect width="300" height="200" fill="%231DB954"/%3E%3Ccircle cx="150" cy="100" r="40" fill="white"/%3E%3Ctext x="150" y="160" text-anchor="middle" font-size="18" fill="white" font-weight="bold"%3ESpotify%3C/text%3E%3C/svg%3E',
+      badge: 'new',
+      warranty: '3 tháng',
+      description: 'Nghe nhạc không quảng cáo, chất lượng cao, tải offline'
+    },
+    {
+      id: 3,
+      name: 'Adobe Creative Cloud',
+      category: 'software',
+      price: 120000,
+      originalPrice: 150000,
+      image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200"%3E%3Crect width="300" height="200" fill="%23FF0000"/%3E%3Ctext x="150" y="110" text-anchor="middle" font-size="28" fill="white" font-weight="bold"%3EAdobe CC%3C/text%3E%3C/svg%3E',
+      badge: 'sale',
+      warranty: '12 tháng',
+      description: 'Bộ công cụ thiết kế chuyên nghiệp: Photoshop, Illustrator, Premiere Pro'
+    },
+    {
+      id: 4,
+      name: 'Microsoft Office 365',
+      category: 'software',
+      price: 80000,
+      originalPrice: 100000,
+      image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200"%3E%3Crect width="300" height="200" fill="%230078D4"/%3E%3Ctext x="150" y="110" text-anchor="middle" font-size="24" fill="white" font-weight="bold"%3EMicrosoft 365%3C/text%3E%3C/svg%3E',
+      badge: 'hot',
+      warranty: '12 tháng',
+      description: 'Bộ ứng dụng văn phòng đầy đủ: Word, Excel, PowerPoint, Outlook'
+    },
+    {
+      id: 5,
+      name: 'YouTube Premium',
+      category: 'streaming',
+      price: 35000,
+      originalPrice: 50000,
+      image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200"%3E%3Crect width="300" height="200" fill="%23FF0000"/%3E%3Cpolygon points="120,70 120,130 180,100" fill="white"/%3E%3Ctext x="150" y="160" text-anchor="middle" font-size="18" fill="white" font-weight="bold"%3EYouTube Premium%3C/text%3E%3C/svg%3E',
+      badge: 'new',
+      warranty: '6 tháng',
+      description: 'Xem video không quảng cáo, tải offline, YouTube Music miễn phí'
+    },
+    {
+      id: 6,
+      name: 'Steam Wallet',
+      category: 'gaming',
+      price: 100000,
+      originalPrice: 120000,
+      image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200"%3E%3Crect width="300" height="200" fill="%23171A21"/%3E%3Ccircle cx="150" cy="100" r="50" fill="%232A475E"/%3E%3Ctext x="150" y="160" text-anchor="middle" font-size="20" fill="white" font-weight="bold"%3ESteam%3C/text%3E%3C/svg%3E',
+      badge: 'sale',
+      warranty: 'Vĩnh viễn',
+      description: 'Nạp tiền Steam để mua game, DLC và các nội dung khác'
+    }
+  ];
+
+  // Shopping cart
+  let cart = [];
+  let currentFilter = 'all';
+
+  // Initialize the page
+  document.addEventListener('DOMContentLoaded', function() {
+    displayProducts(products);
+    setupSearch();
+    updateCartUI();
+  });
+
+  // Display products
+  function displayProducts(productsToShow) {
+    const grid = document.getElementById('productsGrid');
+
+    if (productsToShow.length === 0) {
+      grid.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <i class="fas fa-search text-4xl text-gray-400 mb-4"></i>
+                        <p class="text-gray-500 text-lg">Không tìm thấy sản phẩm nào</p>
+                    </div>
+                `;
+      return;
+    }
+
+    grid.innerHTML = productsToShow.map(product => `
+                <div class="product-card bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden" data-category="${product.category}">
+                    <div class="relative">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                        ${product.badge ? `<span class="absolute top-3 left-3 badge badge-${product.badge}">${getBadgeText(product.badge)}</span>` : ''}
+                        ${product.originalPrice > product.price ? `<span class="absolute top-3 right-3 bg-red-500 text-white text-xs px-2 py-1 rounded">-${Math.round((1 - product.price/product.originalPrice) * 100)}%</span>` : ''}
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-lg mb-2 text-gray-900">${product.name}</h3>
+                        <p class="text-gray-600 text-sm mb-3 line-clamp-2">${product.description}</p>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-2xl font-bold text-primary-600">${formatPrice(product.price)}</span>
+                                ${product.originalPrice > product.price ? `<span class="text-sm text-gray-400 line-through">${formatPrice(product.originalPrice)}</span>` : ''}
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-sm text-gray-500">
+                                <i class="fas fa-shield-alt mr-1"></i>BH: ${product.warranty}
+                            </span>
+                            <span class="text-sm text-green-600 font-medium">
+                                <i class="fas fa-check-circle mr-1"></i>Còn hàng
+                            </span>
+                        </div>
+
+                        <button onclick="addToCart(${product.id})" class="w-full btn-primary text-white py-3 rounded-lg font-semibold">
+                            <i class="fas fa-shopping-cart mr-2"></i>Mua Ngay
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+  }
+
+  // Get badge text
+  function getBadgeText(badge) {
+    const badges = {
+      'hot': 'HOT',
+      'new': 'MỚI',
+      'sale': 'SALE'
+    };
+    return badges[badge] || '';
+  }
+
+  // Format price
+  function formatPrice(price) {
+    return new Intl.NumberFormat('vi-VN', {
+      style: 'currency',
+      currency: 'VND'
+    }).format(price);
+  }
+
+  // Filter products
+  function filterProducts(category) {
+    currentFilter = category;
+
+    // Update filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.remove('active', 'bg-primary-500', 'text-white', 'border-primary-500');
+      btn.classList.add('border-gray-200');
+    });
+
+    event.target.classList.add('active', 'bg-primary-500', 'text-white', 'border-primary-500');
+    event.target.classList.remove('border-gray-200');
+
+    // Filter and display products
+    const filteredProducts = category === 'all'
+            ? products
+            : products.filter(product => product.category === category);
+
+    displayProducts(filteredProducts);
+  }
+
+  // Setup search functionality
+  function setupSearch() {
+    const searchInput = document.getElementById('searchInput');
+    let searchTimeout;
+
+    searchInput.addEventListener('input', function() {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        const query = this.value.toLowerCase().trim();
+
+        let filteredProducts = currentFilter === 'all'
+                ? products
+                : products.filter(product => product.category === currentFilter);
+
+        if (query) {
+          filteredProducts = filteredProducts.filter(product =>
+                  product.name.toLowerCase().includes(query) ||
+                  product.description.toLowerCase().includes(query)
+          );
+        }
+
+        displayProducts(filteredProducts);
+      }, 300);
+    });
+  }
+
+  // Add to cart
+  function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    const existingItem = cart.find(item => item.id === productId);
+
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push({
+        ...product,
+        quantity: 1
+      });
+    }
+
+    updateCartUI();
+    showNotification('Đã thêm vào giỏ hàng!', 'success');
+  }
+
+  // Remove from cart
+  function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    updateCartUI();
+  }
+
+  // Update cart quantity
+  function updateCartQuantity(productId, change) {
+    const item = cart.find(item => item.id === productId);
+    if (item) {
+      item.quantity += change;
+      if (item.quantity <= 0) {
+        removeFromCart(productId);
+      } else {
+        updateCartUI();
+      }
+    }
+  }
+
+  // Update cart UI
+  function updateCartUI() {
+    const cartCount = document.getElementById('cartCount');
+    const cartItems = document.getElementById('cartItems');
+    const emptyCart = document.getElementById('emptyCart');
+    const cartFooter = document.getElementById('cartFooter');
+    const cartTotal = document.getElementById('cartTotal');
+
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+    cartCount.textContent = totalItems;
+
+    if (cart.length === 0) {
+      cartItems.innerHTML = '';
+      emptyCart.classList.remove('hidden');
+      cartFooter.classList.add('hidden');
+    } else {
+      emptyCart.classList.add('hidden');
+      cartFooter.classList.remove('hidden');
+
+      cartItems.innerHTML = cart.map(item => `
+                    <div class="flex items-center space-x-4 p-4 border border-gray-100 rounded-lg">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-sm">${item.name}</h4>
+                            <p class="text-primary-600 font-bold">${formatPrice(item.price)}</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="updateCartQuantity(${item.id}, -1)" class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full hover:bg-gray-200 transition-smooth">
+                                <i class="fas fa-minus text-xs"></i>
+                            </button>
+                            <span class="w-8 text-center font-semibold">${item.quantity}</span>
+                            <button onclick="updateCartQuantity(${item.id}, 1)" class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full hover:bg-gray-200 transition-smooth">
+                                <i class="fas fa-plus text-xs"></i>
+                            </button>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700 transition-smooth">
+                            <i class="fas fa-trash text-sm"></i>
+                        </button>
+                    </div>
+                `).join('');
+
+      cartTotal.textContent = formatPrice(totalPrice);
+    }
+  }
+
+  // Toggle cart modal
+  function toggleCart() {
+    const modal = document.getElementById('cartModal');
+    modal.classList.toggle('hidden');
+
+    if (!modal.classList.contains('hidden')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }
+
+  // Proceed to checkout
+  function proceedToCheckout() {
+    if (cart.length === 0) return;
+
+    toggleCart();
+
+    const checkoutModal = document.getElementById('checkoutModal');
+    const checkoutTotal = document.getElementById('checkoutTotal');
+
+    const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    checkoutTotal.textContent = formatPrice(totalPrice);
+
+    checkoutModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Close checkout modal
+  function closeCheckout() {
+    const modal = document.getElementById('checkoutModal');
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  }
+
+  // Process payment
+  function processPayment(event) {
+    event.preventDefault();
+
+    const submitButton = event.target.querySelector('button[type="submit"]');
+    const originalText = submitButton.innerHTML;
+
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Đang xử lý...';
+    submitButton.disabled = true;
+
+    setTimeout(() => {
+      closeCheckout();
+      cart = [];
+      updateCartUI();
+      showNotification('Thanh toán thành công! Tài khoản sẽ được gửi qua email.', 'success');
+
+      submitButton.innerHTML = originalText;
+      submitButton.disabled = false;
+    }, 3000);
+  }
+
+  // Show notification
+  function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg text-white font-semibold transition-smooth transform translate-x-full`;
+
+    if (type === 'success') {
+      notification.classList.add('bg-green-500');
+      notification.innerHTML = `<i class="fas fa-check-circle mr-2"></i>${message}`;
+    } else if (type === 'error') {
+      notification.classList.add('bg-red-500');
+      notification.innerHTML = `<i class="fas fa-exclamation-circle mr-2"></i>${message}`;
+    } else {
+      notification.classList.add('bg-blue-500');
+      notification.innerHTML = `<i class="fas fa-info-circle mr-2"></i>${message}`;
+    }
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+      notification.classList.remove('translate-x-full');
+    }, 100);
+
+    setTimeout(() => {
+      notification.classList.add('translate-x-full');
+      setTimeout(() => {
+        document.body.removeChild(notification);
+      }, 300);
+    }, 3000);
+  }
+
+  // Toggle mobile menu
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('hidden');
+  }
+
+  // Scroll to products section
+  function scrollToProducts() {
+    document.getElementById('products').scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+
+  // Close modals when clicking outside
+  document.addEventListener('click', function(event) {
+    const cartModal = document.getElementById('cartModal');
+    const checkoutModal = document.getElementById('checkoutModal');
+
+    if (event.target === cartModal) {
+      toggleCart();
+    }
+
+    if (event.target === checkoutModal) {
+      closeCheckout();
+    }
+  });
+
+  // Handle escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      const cartModal = document.getElementById('cartModal');
+      const checkoutModal = document.getElementById('checkoutModal');
+
+      if (!cartModal.classList.contains('hidden')) {
+        toggleCart();
+      }
+
+      if (!checkoutModal.classList.contains('hidden')) {
+        closeCheckout();
+      }
+    }
+  });
+</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96de228f11f20671',t:'MTc1NDk4MjQzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

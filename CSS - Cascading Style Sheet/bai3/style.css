@@ -1,0 +1,70 @@
+/*reset mặc định*/
+body{
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: white;
+    color: #333;
+}
+/*Ảnh bìa*/
+.cover{
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+/*container*/
+.container{
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+}
+
+/*Mục lục*/
+.toc{
+    background: #0fff;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.toc h3{
+    margin-top: 0;
+    coloer: #0077cc;
+}
+.toc ul{
+    list-style: none;
+    margin: 0;
+}
+.toc ul li{
+    margin: 8px 0;
+}
+.toc a{
+    text-decoration: none;
+    color: #0077cc;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+.toc a:hover{
+    color: #ff6600;
+}
+
+/*nội dung chương*/
+h5{
+    color: #444;
+    margin-top: 40px;
+    font-size: 20px;
+    border-left: 10px solid #0077cc;
+    padding-left: 10px;
+}
+p{
+    margin: 10px 0 20px;
+    text-align: justify;
+}
+
+/*Hiệu ứng mượt khi click mục lục*/
+html{
+    scroll-behavior: smooth;
+}
