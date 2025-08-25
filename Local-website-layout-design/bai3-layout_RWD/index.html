@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo layout với RWD</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .header {
+      background: #222222;
+      color: #9d9d9d;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .menu a{
+      color: #9d9d9b;
+      text-decoration: none;
+      margin: 0 10px;
+      padding: 5px 10px;
+      transition: 0.3s;
+    }
+    .menu a:hover{
+      background: #080808;
+      color: white;
+      text-shadow: 0 0 10px #080808, 0 0 12px #ffffff; /* hiệu ứng sáng */
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    .logout{
+      justify-content: ;
+    }
+    .container {
+      display: flex;
+      padding: 20px;
+    }
+    .sidebar-left{
+      width: 20%;
+      padding: 10px;
+      background: #f1f1f1;
+    }
+    .content{
+      flex: 1;
+      padding: 10px;
+    }
+    .sidebar-right{
+      width: 20%;
+      padding: 10px;
+      background: #f1f1f1;
+    }
+    .footer{
+      background: #555555;
+      color: #fff;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <div class="header">
+    <div class="logo">Logo</div>
+    <div class="menu">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Project</a>
+      <a href="#">Contact</a>
+    </div>
+    <div>Logout</div>
+  </div>
+  <div class="container">
+    <div class="sidebar-left">
+      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p>
+    </div>
+
+    <div class="content">
+      <h1>Welcome</h1>
+      <p>Kai'Sa ADC is ranked S+ Tier and has a 50.30% win rate in LoL Patch 25.16. We've analyzed 408457 Kai'Sa ADC games to compile our statistical Kai'Sa Build Guide. For items, our build recommends: Kraken Slayer, Berserker's Greaves, Guinsoo's Rageblade, Nashor's Tooth, Terminus, and Zhonya's Hourglass. For runes, the strongest choice is Precision (Primary) with Lethal Tempo (Keystone), and Inspiration (Secondary). The optimal Summoner Spells for this build are Flash and Barrier. Starting items should include Doran's Blade, Health Potion, and Oracle Lens. Kai'Sa's Best ADC matchups include Kalista, Ezreal, and Mel. Kai'Sa's Best ADC counters are Kog'Maw, Swain, and Karthus.</p>
+      <h2>Test</h2>
+      <p>Kai'Sa ADC is ranked B Tier and has a 51.94% win rate in LoL Swiftplay Patch 25.16. We've analyzed 24903 Kai'Sa ADC games to compile our statistical Kai'Sa Swiftplay Build Guide. For items, our build recommends: Statikk Shiv, Kraken Slayer, Berserker's Greaves, Guinsoo's Rageblade, Nashor's Tooth, and Terminus. For runes, the strongest choice is Precision (Primary) with Lethal Tempo (Keystone), and Inspiration (Secondary). The optimal Summoner Spells for this build are Flash and Barrier. Starting items should include Doran's Blade, Health Potion, and Stealth Ward. Kai'Sa's Best Swiftplay ADC matchups include Akshan, Corki, and Hwei. Kai'Sa's Best Swiftplay ADC counters are Cassiopeia, Swain, and Seraphine.</p>
+    </div>
+
+    <div class="sidebar-right">
+      <div class="ads">ADS</div>
+      <div class="ads">ADS</div>
+    </div>
+  </div>
+  <div class="footer">
+    Footer text
+  </div>
+</div>
+</body>
+</html>
